@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grimoire — Help</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .help-wrap{ max-width: 760px; margin: 0 auto; padding: 28px 24px 60px; line-height: 1.6; }
+  .help-wrap h1{ font-family: var(--font-display); color: var(--gold); margin-bottom:4px; }
+  .help-intro{ color: var(--text-muted); margin-top:0; }
+  .help-wrap h2{
+    font-family: var(--font-display); color: var(--gold); font-size: 18px;
+    margin: 34px 0 10px; padding-bottom:6px; border-bottom: 1px solid var(--line);
+  }
+  .help-wrap h3{ font-size: 14px; color: var(--text-light); margin: 18px 0 6px; }
+  .help-wrap p, .help-wrap li{ color: var(--text-light); font-size: 13.5px; }
+  .help-wrap ul, .help-wrap ol{ margin: 6px 0; padding-left: 22px; }
+  .help-wrap li{ margin: 4px 0; }
+  .help-wrap kbd{
+    font-family: var(--font-data); background: var(--ink-2); border:1px solid var(--line);
+    border-radius: 4px; padding: 1px 6px; font-size: 12px; color: var(--text-light);
+  }
+  .callout{
+    background: rgba(201,151,63,.08); border: 1px solid var(--line); border-left: 3px solid var(--gold);
+    border-radius: 6px; padding: 10px 14px; margin: 12px 0; font-size: 13px;
+  }
+  .callout strong{ color: var(--gold); }
+  .toc{
+    background: rgba(239,230,207,.03); border: 1px solid var(--line); border-radius: 8px;
+    padding: 14px 20px; margin-top: 18px;
+  }
+  .toc p{ margin: 0 0 6px; font-weight: 600; color: var(--gold); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+  .toc ol{ margin: 0; padding-left: 20px; columns: 2; }
+  .toc a{ color: var(--text-light); text-decoration: none; font-size: 13px; }
+  .toc a:hover{ color: var(--gold); text-decoration: underline; }
+  @media (max-width: 560px){ .toc ol{ columns: 1; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">✦</span>
+    <div class="brand-text">
+      <h1>Grimoire — Help</h1>
+      <p>A quick guide to building decks</p>
+    </div>
+  </div>
+</header>
+
+<div class="help-wrap">
+  <p class="help-intro">
+    This page explains how to use Grimoire without needing any technical
+    knowledge. If something isn't covered here, most buttons in the app
+    also have a small pop-up tip if you hover your mouse over them for a
+    moment.
+  </p>
+
+  <div class="toc">
+    <p>On this page</p>
+    <ol>
+      <li><a href="#basics">The basics</a></li>
+      <li><a href="#finding">Finding cards</a></li>
+      <li><a href="#building">Building your deck</a></li>
+      <li><a href="#collection">Your collection</a></li>
+      <li><a href="#saving">Saving and opening decks</a></li>
+      <li><a href="#curiosa">Sending your deck to Curiosa</a></li>
+      <li><a href="#updating">Updating the card list</a></li>
+      <li><a href="#images">Card pictures</a></li>
+      <li><a href="#troubleshooting">Something looks wrong</a></li>
+    </ol>
+  </div>
+
+  <h2 id="basics">The basics</h2>
+  <p>
+    Grimoire is a program for building card decks for the game
+    <em>Sorcery: Contested Realm</em>. It works without an internet
+    connection — everything you need is already on your computer.
+    You only need to go online if you want to check for newly released
+    cards.
+  </p>
+  <p>The screen is split into three parts:</p>
+  <ul>
+    <li><strong>Left side — Find cards.</strong> Search and filter the full list of cards.</li>
+    <li><strong>Middle — Card library.</strong> Every card that matches your search, shown as tiles.</li>
+    <li><strong>Right side — Your deck.</strong> The deck you're currently building.</li>
+  </ul>
+
+  <h2 id="finding">Finding cards</h2>
+  <p>Use the boxes and buttons on the left to narrow down the card list:</p>
+  <ul>
+    <li><strong>Name</strong> — type part of a card's name.</li>
+    <li><strong>Rules text</strong> — search for a word or phrase in what a card does.</li>
+    <li><strong>Type</strong> — click Avatar, Site, Minion, Magic, Artifact, or Aura to show only that kind of card. Click it again to turn the filter off.</li>
+    <li><strong>Sub-type, Set, Artist</strong> — narrow things down further.</li>
+    <li><strong>Include / Exclude elements</strong> — show only cards of a certain element (Air, Earth, Fire, Water), or hide cards of one.</li>
+    <li><strong>Rarity</strong> — filter by Ordinary, Exceptional, Elite, or Unique.</li>
+    <li><strong>Stats &amp; thresholds</strong> — filter by mana cost, attack, defense, or elemental threshold, using "equals," "at least," "at most," etc.</li>
+  </ul>
+  <p>
+    The number just below the filters tells you how many cards currently
+    match. Click <strong>Reset filters</strong> at any time to clear
+    everything and start over.
+  </p>
+
+  <h2 id="building">Building your deck</h2>
+  <ul>
+    <li>Click a card in the middle to add <strong>one copy</strong> to your deck.</li>
+    <li>Hold <kbd>Shift</kbd> and click a card to add <strong>four copies</strong> at once.</li>
+    <li>Click a card's picture or name to open its full details — right-click it if you want to see every bit of information the game data has for it.</li>
+    <li>In the deck list on the right, use the <strong>+</strong> / <strong>−</strong> buttons next to a card to adjust how many copies you have.</li>
+    <li>You can drag and drop cards within your deck list to reorder them.</li>
+    <li>Give your deck a name and pick a format at the top of the deck panel.</li>
+  </ul>
+  <div class="callout">
+    <strong>About copy limits:</strong> Sorcery normally limits how many
+    copies of a card you can run based on its rarity (Ordinary: 4,
+    Exceptional: 3, Elite: 2, Unique: 1). Grimoire will warn you if you go
+    over, but it won't stop you — this is on purpose, since house rules
+    and formats vary.
+  </div>
+
+  <h2 id="collection">Your collection</h2>
+  <p>
+    The <strong>Collection</strong> box below your deck is a separate,
+    personal list — useful for keeping track of extra cards you own that
+    aren't part of the deck you're currently building (holds up to 10
+    cards). It's local to your computer only and isn't included when you
+    export your deck.
+  </p>
+
+  <h2 id="saving">Saving and opening decks</h2>
+  <ul>
+    <li>Grimoire automatically remembers your current deck as you work, even if you close the app — you won't lose it.</li>
+    <li><strong>Save deck as…</strong> saves your deck to a file you choose, so you can back it up or share it.</li>
+    <li><strong>Open…</strong> loads a deck file you saved earlier.</li>
+    <li><strong>Clear deck</strong> empties the deck you're currently working on — use this when starting something new.</li>
+  </ul>
+
+  <h2 id="curiosa">Sending your deck to Curiosa</h2>
+  <p>
+    <a href="https://curiosa.io" target="_blank" rel="noopener">Curiosa</a>
+    is a popular website for storing and sharing Sorcery decks. Grimoire
+    can prepare a list you can paste straight into it:
+  </p>
+  <ul>
+    <li><strong>Copy bulk-add list</strong> — copies your deck to the clipboard, ready to paste into Curiosa's "Show bulk add…" box.</li>
+    <li><strong>Export for Curiosa (.txt)</strong> — saves the same list as a text file instead, in case you'd rather send the file to someone or paste it later.</li>
+  </ul>
+  <div class="callout">
+    <strong>Heads up:</strong> the list Grimoire creates does not include
+    your <strong>Avatar</strong> or anything in your <strong>Collection</strong>
+    — Curiosa asks you to pick your Avatar separately, and Collection cards
+    aren't part of a deck. After pasting the list on Curiosa, just set your
+    Avatar there manually.
+  </div>
+
+  <h2 id="updating">Updating the card list</h2>
+  <p>
+    Grimoire comes with a full card list already built in, so you don't
+    need to do anything to get started. If new cards have come out and you
+    want the very latest list, click <strong>Update</strong> near the top
+    of the window (you'll need an internet connection for this). If it
+    can't connect, it will simply tell you and leave your existing card
+    list untouched — nothing is lost.
+  </p>
+  <p>
+    The colored dot next to your card database status shows how things
+    stand: green means everything loaded fine, yellow/red means there was
+    an issue.
+  </p>
+
+  <h2 id="images">Card pictures</h2>
+  <p>
+    Card artwork is a separate download from the app itself (it's a large
+    amount of data). If you're seeing plain text cards instead of pictures,
+    ask whoever gave you this program for the card image folder, and place
+    it where they tell you to. Cards without a picture on file will simply
+    show as text-only tiles — everything else about them still works
+    normally.
+  </p>
+
+  <h2 id="troubleshooting">Something looks wrong</h2>
+  <ul>
+    <li><strong>A card's stats look blank or off.</strong> Right-click the card to see everything Grimoire found about it — occasionally the official card data changes and a field may need to be looked at again.</li>
+    <li><strong>No pictures are showing at all.</strong> See <a href="#images">Card pictures</a> above.</li>
+    <li><strong>"Update" isn't working.</strong> This needs an internet connection — check that you're online. Your existing cards are safe either way.</li>
+    <li><strong>Still stuck?</strong> Reach out to whoever shared Grimoire with you for help.</li>
+  </ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+{
+  "name": "grimoire-sorcery-deck-builder",
+  "version": "1.0.0",
+  "description": "Offline-first desktop deck builder for Sorcery: Contested Realm",
+  "main": "main.js",
+  "author": "",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.grimoire.sorcerydeckbuilder",
+    "productName": "Grimoire",
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "data/**/*"
+    ],
+    "extraResources": [
+      { "from": "images", "to": "images" }
+    ],
+    "win": {
+      "target": ["portable", "nsis"],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "icon": "build/icon.png",
+      "category": "Game"
+    },
+    "mac": {
+      "target": ["dmg"]
+    }
+  }
+}

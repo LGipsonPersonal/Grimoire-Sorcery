@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grimoire — Sorcery Deck Builder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">✦</span>
+    <div class="brand-text">
+      <h1>Grimoire</h1>
+      <p>An offline-first deck builder for Sorcery: Contested Realm</p>
+    </div>
+  </div>
+
+  <div class="header-actions">
+    <div class="db-status" id="dbStatus">
+      <span class="db-dot" id="dbDot"></span>
+      <span id="dbStatusText">Loading card database…</span>
+      <button id="btnRefreshDb" class="btn btn-ghost btn-sm" title="Fetch the latest card list from the Sorcery API (needs internet)">Update</button>
+      <div class="db-menu">
+        <button id="btnImportDb" class="btn btn-ghost btn-sm">Import DB file…</button>
+      </div>
+    </div>
+
+    <button id="btnHelp" class="btn btn-ghost btn-sm" title="Open the help guide">Help</button>
+  </div>
+</header>
+
+<main class="layout">
+
+  <!-- FILTERS -->
+  <aside class="panel filters">
+    <div class="panel-head">Find cards</div>
+
+    <div class="filter-group">
+      <div class="filter-label">Name</div>
+      <input type="search" id="nameFilter" class="input" placeholder="Card name…">
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-label">Rules text</div>
+      <input type="search" id="textFilter" class="input" placeholder="Search rules text…">
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-label">Type</div>
+      <div class="pip-row" id="typeFilters">
+        <button class="pip" data-type="Avatar">Avatar</button>
+        <button class="pip" data-type="Site">Site</button>
+        <button class="pip" data-type="Minion">Minion</button>
+        <button class="pip" data-type="Magic">Magic</button>
+        <button class="pip" data-type="Artifact">Artifact</button>
+        <button class="pip" data-type="Aura">Aura</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-label">Sub-type</div>
+      <select id="subtypeFilter" class="input">
+        <option value="">Any sub-type</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-label">Set / expansion</div>
+      <select id="setFilter" class="input">
+        <option value="">Any set</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-label">Include elements</div>
+      <div class="pip-row" id="includeElementFilters">
+        <button class="pip" data-el="Air">Air</button>
+        <button class="pip" data-el="Earth">Earth</button>
+        <button class="pip" data-el="Fire">Fire</button>
+        <button class="pip" data-el="Water">Water</button>
+        <button class="pip" data-el="None">Neutral</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-label">Exclude elements</div>
+      <div class="pip-row" id="excludeElementFilters">
+        <button class="pip" data-el="Air">Air</button>
+        <button class="pip" data-el="Earth">Earth</button>
+        <button class="pip" data-el="Fire">Fire</button>
+        <button class="pip" data-el="Water">Water</button>
+        <button class="pip" data-el="None">Neutral</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-label">Rarity</div>
+      <div class="pip-row" id="rarityFilters">
+        <button class="pip" data-rarity="Ordinary">Ordinary</button>
+        <button class="pip" data-rarity="Exceptional">Exceptional</button>
+        <button class="pip" data-rarity="Elite">Elite</button>
+        <button class="pip" data-rarity="Unique">Unique</button>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-label">Stats &amp; thresholds</div>
+      <div class="numeric-grid" id="numericFilters"></div>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-label">Artist</div>
+      <input type="search" id="artistFilter" class="input" placeholder="Artist name…">
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-label">Sort by</div>
+      <select id="sortFilter" class="input">
+        <option value="name">Name</option>
+        <option value="cost">Cost</option>
+        <option value="type">Type</option>
+        <option value="rarity">Rarity</option>
+      </select>
+    </div>
+
+    <div class="filter-count" id="resultCount">— cards</div>
+    <button id="btnResetFilters" class="btn btn-ghost btn-sm filter-reset">Reset filters</button>
+
+    <div class="filter-note">
+      Tip: click a card to add one copy to your deck. Shift-click to add four.
+    </div>
+  </aside>
+
+  <!-- CARD GRID -->
+  <section class="panel grid-panel">
+    <div class="panel-head">Card library</div>
+    <div class="card-grid" id="cardGrid">
+      <div class="empty-state" id="gridEmptyState">
+        Loading the grimoire's index…
+      </div>
+    </div>
+  </section>
+
+  <!-- DECK -->
+  <aside class="panel deck-panel">
+    <div class="panel-head">Your deck</div>
+
+    <div class="deck-meta">
+      <input type="text" id="deckName" class="input" placeholder="Deck name" value="Untitled Deck">
+      <select id="deckFormat" class="input">
+        <option>Constructed</option>
+        <option>Beta</option>
+        <option>Arthurian Legends</option>
+        <option>Draft</option>
+      </select>
+    </div>
+
+    <div class="elemental-ledger" id="elementalLedger">
+      <div class="ledger-bar" data-el="Air"><span></span></div>
+      <div class="ledger-bar" data-el="Earth"><span></span></div>
+      <div class="ledger-bar" data-el="Fire"><span></span></div>
+      <div class="ledger-bar" data-el="Water"><span></span></div>
+    </div>
+
+    <div class="deck-totals" id="deckTotals">
+      <div><strong id="totAvatar">0</strong><span>Avatar</span></div>
+      <div><strong id="totSites">0</strong><span>Atlas</span></div>
+      <div><strong id="totSpells">0</strong><span>Spellbook</span></div>
+      <div><strong id="totAll">0</strong><span>Total</span></div>
+    </div>
+
+    <div class="deck-list" id="deckList">
+      <div class="empty-state">Your deck is empty. Click cards on the left to add them.</div>
+    </div>
+
+    <div class="deck-collection">
+      <div class="deck-section-head deck-collection-head">
+        <span>Collection</span>
+        <span class="deck-section-count" id="collectionCount">0/10</span>
+        <button id="btnClearCollection" class="btn-text-danger" title="Clear collection">Clear</button>
+      </div>
+      <div class="deck-list" id="collectionList">
+        <div class="empty-state">Empty. Add cards from a card's detail view.</div>
+      </div>
+    </div>
+
+    <div class="deck-actions">
+      <button id="btnCopyBulk" class="btn btn-primary">Copy bulk-add list</button>
+      <button id="btnDownloadBulk" class="btn btn-ghost">Export for Curiosa (.txt)</button>
+      <button id="btnSaveDeck" class="btn btn-ghost">Save deck as…</button>
+      <button id="btnLoadDeck" class="btn btn-ghost">Open deck…</button>
+      <button id="btnClearDeck" class="btn btn-danger-ghost">Clear deck</button>
+    </div>
+  </aside>
+
+</main>
+
+<!-- Card detail modal -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal" id="cardModal"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# electron-builder output
+dist/
+out/
+
+# Card art — large (multi-GB), distributed separately (see README:
+# "About card images"). Never belongs in git history.
+images/*
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor / OS junk
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Claude Code local settings (personal permission overrides, not shared config)
+.claude/
+
+# Env files, if any get added later
+.env
+.env.local
