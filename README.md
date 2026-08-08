@@ -91,19 +91,37 @@ way to check that data/images/UI changes look right.
 
 ```
 npm run dist         # build for whatever OS you're running this on
-npm run dist:win      # Windows: portable .exe + NSIS installer
+npm run dist:win      # Windows: .zip
 npm run dist:mac      # macOS: .dmg
 npm run dist:linux    # Linux: AppImage + .deb
 ```
 
-Output lands in `dist/`. For handing the app to someone else, the
-**portable .exe** (Windows) is the simplest "no install, just run it"
-option; the NSIS installer is a more familiar experience if they'd rather
-have a proper Start Menu entry.
+A precompiled Windows build is available at:
+https://drive.google.com/file/d/1Ba9JfXp4ZIQXhI1f3HcjhStK1OoWwIyP/view?usp=sharing
+
+Output lands in `dist/`. Windows builds as a plain `.zip` of the app
+folder rather than an NSIS installer or portable exe: with a full card-art
+set in `images/`, the packaged app is several GB, and NSIS's installer/
+portable wrapper (`makensis`, a 32-bit process) can't `mmap` a payload that
+large — it fails outright rather than producing a corrupt or truncated
+installer. `zip` has no such limit, at the cost of a slightly less
+polished handoff: recipients extract the archive and run
+`Grimoire.exe` from inside the extracted folder (see
+[Using a build](#using-a-build) below) instead of double-clicking a single
+installer.
 
 Note that `images/` gets bundled wholesale into the output, so build time
 and the resulting file size scale directly with how much art you've put in
-that folder — a full card-art set makes for a multi-gigabyte executable.
+that folder — a full card-art set makes for a multi-gigabyte archive.
+
+### Using a build
+
+1. Extract the `.zip` from `dist/` — keep every file together, not just
+   `Grimoire.exe`; it depends on the other files/folders next to it
+   (`resources/`, `locales/`, etc.).
+2. Run `Grimoire.exe` from inside the extracted folder.
+3. It's unsigned, so Windows SmartScreen will show an "unrecognized
+   publisher" warning the first time — click **More info → Run anyway**.
 
 ## Using the app
 

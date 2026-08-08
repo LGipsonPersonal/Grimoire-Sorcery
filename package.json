@@ -30,14 +30,8 @@
       { "from": "images", "to": "images" }
     ],
     "win": {
-      "target": ["portable", "nsis"],
+      "target": ["zip"],
       "icon": "build/icon.ico"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": true,
-      "createStartMenuShortcut": true
     },
     "linux": {
       "target": ["AppImage", "deb"],
